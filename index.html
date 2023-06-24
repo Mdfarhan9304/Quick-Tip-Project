@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <main id="container">
+ <h1 id="title">Quick Tip</h1>
+
+
+ <section>
+  <div class="bill">
+    <label for="">Bill</label>
+   <input type="number" placeholder="Your bill" id="Yourbill" oninput="update()">
+  </div>
+
+  <div>
+    <div class="space-between">
+    <label for="tipInput">Select tip</label>
+    <span id="tipPercent">0%</span>
+  </div>
+  <input type="range" value="0" id="tipInput" class="range">
+  </div>
+
+  <div class="space-between">
+    <span>Tip</span>
+    <span id="tipValue"></span>
+    </div>
+    <hr>
+    <div class="space-between total">
+    <span>Total</span>
+    <span id="totalWithTip"></span>
+  </div>
+
+  </div>
+ </section>
+
+ <section>
+ <div>
+    <div class="space-between">
+      <label for="">Split</label>
+      <span id="splitValue">1 person</span>
+    </div>
+    <input type="range" min="1" max="10" value="1" id="splitInput" class="range">
+ </div>
+ <div class="space-between">
+  <span>Bill Each</span>
+  <span id="billEach"></span>
+ </div>
+ <div class="space-between">
+  <span>Tip Each</span>
+  <span id="tipEach"></span>
+ </div>
+ </section>
+  <script>
+
+
+    function update(){
+    
+    let Bill= Number(document.getElementById('Yourbill').value);
+    let tipPercent=Number( document.getElementById('tipInput').value);
+    let split= document.getElementById('splitInput').value;
+    
+
+    let tipValue= Bill * (tipPercent/100);
+    let tipEach= tipValue/split;
+    let billEach= (Bill+tipValue) / split;
+
+    document.getElementById("tipPercent").innerHTML=tipPercent + " %";
+    document.getElementById("tipValue").innerText=tipValue.toFixed(2) + " ₹";
+    document.getElementById("splitValue").innerHTML=split + " person";
+    document.getElementById("billEach").innerText=billEach.toFixed(2) + " ₹"
+    document.getElementById("tipEach").innerText = tipEach.toFixed(2)+ " ₹"
+
+
+
+}
+
+let container=document.getElementById('container');
+
+container.addEventListener("input", update)
+
+
+
+
+  </script>
+</main>
+</body>
+</html>
